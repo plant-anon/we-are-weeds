@@ -29,14 +29,14 @@ That, and so a basic layer of trust forms between us anons. I'm not out to get y
 
 ### Setting up
 * Clone the source
-* In the FirstApp folder, create an `appsettings.secret.json` file, with this as the contents:
+* In the FirstApp project, create an `appsettings.secret.json` file, with this as the contents:
 ~~~
 {
-	"ConnectionStrings": {
-		"DefaultConnection": "host={0};database={1};userid={2};password={3};"
-	},
+    "ConnectionStrings": {
+        "DefaultConnection": "host={0};database={1};userid={2};password={3};"
+    },
     "Recaptcha": {
-		"SiteKey": "Your Google ReCaptcha Site Key",
+        "SiteKey": "Your Google ReCaptcha Site Key",
         "SecretKey": "Your Google ReCaptcha Secret Key"
     }
 }
