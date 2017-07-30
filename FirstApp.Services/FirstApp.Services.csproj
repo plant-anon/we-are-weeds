@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CDN Only|AnyCPU'" />
+
+  <ItemGroup>
+    <PackageReference Include="Devart.Data" Version="5.0.1723" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Rijndael256" Version="3.2.0" />
+    <PackageReference Include="SapientGuardian.EntityFrameworkCore.MySql" Version="7.1.23" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FirstApp.Data\FirstApp.Data.csproj" />
+    <ProjectReference Include="..\FirstApp.Models\FirstApp.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
+</Project>

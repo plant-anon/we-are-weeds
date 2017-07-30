@@ -1,0 +1,99 @@
+﻿@using System.Security.Claims
+
+@{ 
+	var Pages = new Dictionary<string, string> {
+		{"Home", "/" },
+		{"Board", "/board" },
+		{"Cookbook", "/cookbook" }
+	};
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Test Application.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+	<link rel="shortcut icon" href="/favicon/favicon.png">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-192.png">
+	<link rel="icon" type="image/png" sizes="160x160" href="/favicon/favicon-160.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="/favicon/favicon-64.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png">
+	<link rel="apple-touch-icon" href="/favicon/favicon-57.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/favicon/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/favicon/favicon-72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/favicon/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/favicon/favicon-60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/favicon/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/favicon/favicon-76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/favicon/favicon-152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-180.png">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="/favicon/favicon-144.png">
+	<meta name="msapplication-config" content="/favicon/browserconfig.xml">
+
+	<script src="~/config/warpconfig.js"></script> <!-- Configure _WARP before it executes -->
+
+	<title>@ViewData["Title"] - We Are Weeds</title>
+
+	<link rel="stylesheet" href="~/dist/material.min.css" />
+	<link rel="stylesheet" href="~/css/Site.css" />
+
+	<script src="~/dist/base.min.js"></script>
+	<script src="~/dist/material.min.js"></script>
+	<script src="~/dist/addons.min.js"></script>
+</head>
+<!-- 
+	I know what you're thinking.
+	What the fuck is all this garbage? XML?
+
+	This project started off as a dummy project to test a theory I wanted to put into code.
+	Don't think too much about it, use an up-to-date browser, and don't use IE.
+	Hell, don't use IE anyways. It's fucking garbage.
+
+	- Plantanon !!FB0SCsTV8h3
+-->
+<body>
+	<Container class="body">
+		<NavBar id="TopNav" logo="/favicon/favicon.png" name="We are Weeds" logo-and-name="true">
+			<ul class="nav navbar-nav">
+				@if(User.Identity.IsAuthenticated) {
+					foreach(var prop in Pages) { 
+						<li class="@(prop.Key == (string)ViewData["Title"] ? "active" : "")">
+							<a href="@prop.Value">@prop.Key</a>
+						</li>
+					}
+				}
+			</ul>
+			
+			@if(User.Identity.IsAuthenticated) {
+				var identity = (ClaimsIdentity)User.Identity;
+
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#/" id="NavbarLogout">Logout (<strong text-color="red" text-color-darkess="200">@(identity.Claims.Where(x => x.Type == "Username").Select(x => x.Value).SingleOrDefault())</strong>)</a>
+					</li>
+				</ul>
+			} else {
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="/login">Login</a>
+					</li>
+					<li>
+						<a href="/register">Register</a>
+					</li>
+				</ul>
+			}
+		</NavBar>
+		@RenderBody()
+
+		<div id=warp-overlay class=overlay color=white />
+		<script src="~/js/addons/warp.js"></script>
+		<script src="~/js/Site.js"></script>
+	</Container>
+</body>
+</html>

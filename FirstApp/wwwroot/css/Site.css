@@ -1,0 +1,15 @@
+﻿label.error {
+    color: darkred;
+    font-weight: normal;
+}
+
+html {
+	position: absolute;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	height: 100%;
+	overflow: auto;
+}

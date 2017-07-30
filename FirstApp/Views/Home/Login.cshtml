@@ -1,0 +1,51 @@
+﻿@using Newtonsoft.Json
+@{ 
+    ViewData["Title"] = "Login";
+}
+
+<div id="overlay"></div>
+
+<Row>
+	<Column span-md="6" offset-md="3">
+		<Card card-title="Login" title-image="/res/card.2.jpg" title-image-size="176">
+			<form class="form-horizontal" id="LoginForm" method="post" action="/login">
+				<FormComponent type="input type=text" id="Username" required>Username</FormComponent>
+				<FormComponent type="input type=password" id="Password" required>Password</FormComponent>
+				<button type="submit" class="btn" size="md" btn-style="success" id="submit" full-width push-down-md>Login</button>
+				<p form-text-information>Don't have an account? <a href="/register">Create an Account</a></p>
+			</form>
+		</Card>
+	</Column>
+</Row>
+
+<script>
+	$('#LoginForm').on('submit', function (e) {
+		e.preventDefault();
+		if ($('#LoginForm').valid()) {
+			$.ajax({
+				url: '/login',
+				type: 'post',
+				dataType: 'json',
+				data: $('#LoginForm').serialize(),
+				success: function(res) {
+					if (res || status == "success") {
+						if (!res.errored && res.payload) {
+							return Toaster.Success(
+								"Success",
+								"(You) have been logged in successfully. Please wait while we refresh the page."
+							).selfDestruct(4000, function() {
+								location.href = "/";
+							});
+						}
+					}
+
+					Toaster.Error("Error", res.exception).selfDestruct(5000);
+				},
+				fail: function() {
+					Toaster.Error("Generic Error", "Unknown error encountered while attempting communications with the server. Check your web console for details.").selfDestruct(5000);
+					console.log(arguments);
+				}
+			});
+		}
+	});
+</script>

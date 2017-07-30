@@ -1,0 +1,108 @@
+﻿header[navbar] {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-flex-wrap: nowrap;
+	-ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	-webkit-justify-content: flex-start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+	box-sizing: border-box;
+	-webkit-flex-shrink: 0;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: none;
+	min-height: 64px;
+	max-height: 1000px;
+	z-index: 3;
+	background-color: #3f51b5;
+	color: #fff;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+	transition-duration: .2s;
+	transition-timing-function: cubic-bezier(.4,0,.2,1);
+	transition-property: max-height,box-shadow;
+}
+
+	header[navbar][transparent] {
+		color: white;
+		box-shadow: none;
+	}
+
+	header[navbar] > div[nav-head] {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-direction: row;
+		-ms-flex-direction: row;
+		flex-direction: row;
+		-webkit-flex-wrap: nowrap;
+		-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+		-webkit-flex-shrink: 0;
+		-ms-flex-negative: 0;
+		flex-shrink: 0;
+		box-sizing: border-box;
+		-webkit-align-self: stretch;
+		-ms-flex-item-align: stretch;
+		align-self: stretch;
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+		height: 64px;
+		margin: 0;
+		padding: 0 40px 0 80px;
+	}
+
+		header[navbar] > div[nav-head] > * {
+			-webkit-flex-shrink: 0;
+			-ms-flex-negative: 0;
+			flex-shrink: 0;
+		}
+
+		header[navbar] > div[nav-head] > [nav-title] {
+			display: block;
+			position: relative;
+			font-family: "Roboto","Helvetica","Arial",sans-serif;
+			font-size: 20px;
+			line-height: 1;
+			letter-spacing: .02em;
+			font-weight: 400;
+			box-sizing: border-box;
+		}
+
+		header[navbar] > div[nav-head] > [nav-spacing] {
+			-webkit-flex-grow: 1;
+			-ms-flex-positive: 1;
+			flex-grow: 1;
+		}
+
+		header[navbar] > div[nav-head] > nav {
+			margin: 0;
+			padding: 0;
+			height: 64px;
+			-webkit-flex-direction: row;
+			-ms-flex-direction: row;
+			flex-direction: row;
+			-webkit-align-items: center;
+			-ms-flex-align: center;
+			align-items: center;
+		}
+
+			header[navbar] > div[nav-head] > nav > [nav-item] {
+				display: block;
+				line-height: 64px;
+				padding: 0 24px;
+				text-decoration: none;
+				margin: 0;
+				font-size: 14px;
+				font-weight: 400;
+				letter-spacing: 0;
+				opacity: .87;
+			}

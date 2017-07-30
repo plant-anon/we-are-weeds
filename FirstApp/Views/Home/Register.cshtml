@@ -1,0 +1,58 @@
+﻿@using Newtonsoft.Json
+@{
+	ViewData["Title"] = "Create an Account";
+}
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<div id="overlay"></div>
+
+<Row>
+	<Column span-md="6" offset-md="3">
+		<Card card-title="Register" title-image="/res/card.1.jpg" title-image-size="176">
+			<form class="form-horizontal" id="RegisterForm" method="post" action="/register">
+				<fieldset class="responsive">
+					<FormComponent type="input type=text" id="Username" required autocomplete="off">Username</FormComponent>
+					<FormComponent type="input type=password" id="Password" required autocomplete="off">Password</FormComponent>
+					<FormComponent type="input type=password" id="RePassword" required autocomplete="off">Repeat Password</FormComponent>
+					<div class="form-group">
+						<recaptcha />
+					</div>
+				</fieldset>
+				<button type="submit" class="btn" size="md" btn-style="success" id="submit" full-width push-down-md>Register</button>
+				<p form-text-information>Already have an account? <a href="/login">Login</a></p>
+			</form>
+		</Card>
+	</Column>
+</Row>
+
+<script>
+	$('#RegisterForm').on('submit', function(e) {
+		e.preventDefault();
+		if ($('#RegisterForm').valid()) {
+			$.ajax({
+				url: '/register',
+				type: 'post',
+				dataType: 'json',
+				data: $('#RegisterForm').serialize(),
+				success: function(res) {
+					if (res || status == "success") {
+						if (!res.errored && res.payload) {
+							return Toaster.Success(
+								"Success",
+								"Your account has been setup, and (You) have been logged in. Please wait while we refresh the page."
+							).selfDestruct(4000, function() {
+								location.href = "/";
+							});
+						}
+					}
+
+					Toaster.Error("Error", res.exception).selfDestruct(5000);
+				},
+				fail: function() {
+					Toaster.Error("Generic Error", "Unknown error encountered while attempting communications with the server. Check your web console for details.").selfDestruct(5000);
+					console.log(arguments);
+				}
+			});
+		}
+	});
+</script>

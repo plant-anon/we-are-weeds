@@ -1,0 +1,52 @@
+[
+	{
+		"outputFileName": "wwwroot/dist/material.css",
+			"inputFiles": [
+				"wwwroot/css/fonts.css",
+				"wwwroot/css/material.css",
+				"wwwroot/css/material.grid.css",
+				"wwwroot/css/material.colors.css",
+				"wwwroot/css/material.buttons.css",
+				"wwwroot/css/material.typography.css",
+				"wwwroot/css/material.components.css",
+				"wwwroot/css/material.nav.css",
+				"wwwroot/css/material.sfx.css"
+			]
+	},
+	{
+		"outputFileName": "wwwroot/dist/material.js",
+		"inputFiles": [
+			"wwwroot/js/material.js"
+		],
+		"minify": {
+			"enabled": true,
+			"renameLocals": true
+		}
+	},
+	{
+		"outputFileName": "wwwroot/dist/base.js",
+		"inputFiles": [
+			"wwwroot/js/base/jquery.js",
+			"wwwroot/js/base/jquery.migrate.js",
+			"wwwroot/js/base/jquery.ui.js",
+			"wwwroot/js/base/bootstrap.js",
+			"wwwroot/js/base/jquery.validate.js"
+			//"wwwroot/js/base/jquery.uvalidate.js"
+		],
+		"minify": {
+			"enabled": true,
+			"renameLocals": true
+		}
+	},
+	{
+		"outputFileName": "wwwroot/dist/addons.js",
+			"inputFiles": [
+				"wwwroot/js/addons/spinner.js",
+				"wwwroot/js/addons/toaster.js"
+			],
+		"minify": {
+			"enabled": true,
+			"renameLocals": true
+		}
+	}
+]
